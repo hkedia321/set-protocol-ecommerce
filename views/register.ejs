@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register | Online Shopping | Online Payment</title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style type="text/css">
+  #map {
+    height: 100%;
+    min-height: 400px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center offset-md-3">
+        <form onsubmit="return check()" class="form-signin" id="login_form" method="post" action="/register/submit/">
+          <h2 class="form-signin-heading">Register - make an account</h2>
+          <% if (loginStatus) { %>
+          <div class="alert alert-danger" role="alert">
+            <%-loginStatus%>
+          </div>
+          <% } %>
+          <br>
+          <input type="text" name="username" id="username" class="form-control" placeholder="Choose a new Username" value="" required autofocus>
+          <br>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" value="" required autofocus>
+          <br>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="" required>
+          <br>
+          <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" placeholder="Password confirm" value="" required>
+          <br>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+          <input type="hidden" name="submit" value="submit" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+
+  <script>
+    function check() {
+      var username = document.getElementById("username").value;
+      var name = document.getElementById("name").value;
+      var passwordConfirm = document.getElementById("password-confirm").value;
+      var password = document.getElementById("password").value;
+      if (username == "" || name == "" || password == "" || passwordConfirm == "") {
+        alert("Please fill all the fields");
+        return false;
+      } 
+      if (password != passwordConfirm) {
+        alert("Please check your password confirm");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
