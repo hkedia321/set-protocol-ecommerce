@@ -9,14 +9,21 @@
     "bcrypt": "^3.0.1",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
+    "crypto-js": "^3.1.9-1",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
+    "express-browserify": "^1.0.2",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.9",
     "morgan": "~1.9.0",
-    "node-jsencrypt": "^1.0.0"
+    "msg91": "0.0.6",
+    "nexmo": "^2.4.0",
+    "node-jsencrypt": "^1.0.0",
+    "node-rsa": "^1.0.1",
+    "nodemailer": "^4.6.8",
+    "request": "^2.88.0"
   }
 }

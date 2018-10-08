@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OTP Verification | Online Shopping | Online Payment</title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css" />
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <style type="text/css">
+  #map {
+    height: 100%;
+    min-height: 400px;
+  }
+</style>
+</head>
+<body>
+  <%- include partials/navbar.ejs %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center offset-md-3">
+        <form class="form-signin" id="otp_form" method="post" action="/purchase-verification/submit">
+          <h2 class="form-signin-heading">OTP Verification</h2>
+          <h4>We have send OTP to *******<%=phone.substr(7)%></h4>
+          <% if (otpStatus) { %>
+          <div class="alert alert-danger" role="alert">
+            <%-otpStatus%>
+          </div>
+          <% } %>
+          <br>
+          <input type="text" name="otp" class="form-control" placeholder="Enter your OTP" value="" required autofocus>
+          <br/>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+
+          <input type="hidden" name="phone" value="<%=phone%>" />
+          <input type="hidden" name="transactionid" value="<%=transactionid%>" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+
+  <script>
+  </script>
+</body>
+</html>

@@ -5,15 +5,18 @@ mongoose.connect('mongodb://localhost:27017/setprotocol',{useNewUrlParser: true}
 var Schema = mongoose.Schema;
 
 // create a schema
-var userSchema = new Schema({
-  username: String,
+var transactionSchema = new Schema({
   name: String,
-  password: String,
-}, { collection: 'users' });
+  creditcardno: String,
+  creditcarddate: String,
+  cvv: String,
+  otp: String,
+  transactionid: String
+}, { collection: 'transactions' });
 
 // the schema is useless so far
 // we need to create a model using it
-var usersdata = mongoose.model('users', userSchema);
+var transactionsdata = mongoose.model('transactions', transactionSchema);
 
 // make this available to our users in our Node applications
-module.exports = usersdata;
+module.exports = transactionsdata;

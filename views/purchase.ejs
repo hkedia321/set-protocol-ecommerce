@@ -14,7 +14,7 @@
     <h2 class="form-signin-heading">Purchase iphone X</h2>
     <div class="row">
       <div class="col-md-4 text-left" style="padding:20px">
-        <form class="form-purchase" id="purchase_form" method="post">
+        <div class="form-purchase" id="purchase_form">
           <br>
           <h5><b>Name: </b><%=name%></h5>
           <div class="form-group">
@@ -42,8 +42,8 @@
             <input type="text" name="cvv" class="form-control" placeholder="CVV number" value="221" required>
           </div>
           <br>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Purchase this product</button>
-        </form>
+          <button class="btn btn-lg btn-primary btn-block" id="submit" type="submit">Purchase this product</button>
+        </div>
       </div>
       <div class="offset-md-2 col-md-6 text-center">
         <img class="responsive-img" src="/images/iphonex.jpeg" />
@@ -61,9 +61,9 @@
   <script type="text/javascript" src="/javascripts/jsencrypt.min.js"></script>
   <script>
     var encrypt = new JSEncrypt();
-    $('form').submit(function(event) {
+    $('#submit').click(function(event) {
       event.preventDefault();
-
+      // Merchant Information Message Digest
       var merchantData = {
         'name' : "<%=name%>",
         'email': $('input[name=email]').val(),
@@ -72,19 +72,45 @@
         'product': "iphonex",
         'price': "63000"
       };
+      encrypt.setPublicKey("<%-merchantPublicKey%>");
+      var encryptedMerchantData = encrypt.encrypt(JSON.stringify(merchantData));
+      console.log("encryptedMerchantData:");
+      console.log(encryptedMerchantData);
+      
+      // Payment Information Message Digest
       var bankData = {
         'name' : "<%=name%>",
         'creditcardno': $('input[name=creditcardno]').val(),
         'creditcarddate': $('input[name=creditcarddate]').val(),
         'cvv': $('input[name=cvv]').val(),
       };
-      encrypt.setPublicKey("<%-merchantPublicKey%>");
-      var encryptedMerchantData = encrypt.encrypt(JSON.stringify(merchantData));
-      console.log(encryptedMerchantData);
       encrypt.setPublicKey("<%-bankPublicKey%>");
       var encryptedBankData = encrypt.encrypt(JSON.stringify(bankData));
+      console.log("encryptedBankData:");
       console.log(encryptedBankData);
 
+      var message_digest = encryptedMerchantData + encryptedBankData;
+
+      //POST data to merchant server
+      $.ajax({
+        type: 'POST',
+        url: 'purchase/submit', 
+        data: {
+          pimd: encodeURIComponent(encryptedBankData),
+          oimd: (encryptedMerchantData),
+        }, 
+        dataType: 'json', 
+        encode: true
+      })
+      .done(function(data) {
+        console.log(data); 
+        if (data.success === 1) {
+          window.location.href = "http://localhost:4000" + data.redirect;
+        }
+        else {
+          alert("Incorrect Information");
+        }
+      });
     });
   </script>
 </body>

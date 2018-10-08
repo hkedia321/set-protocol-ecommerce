@@ -8,6 +8,7 @@ var logger = require('morgan');
 
 var usersRouter = require('./controllers/users');
 var setRouter = require('./controllers/set');
+var bankRouter = require('./controllers/bank');
 
 var app = express();
 
@@ -21,7 +22,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: 'secret'}));
+app.use(session({secret: 'secret', resave: true, saveUninitialized: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 // Add headers
 app.use(function (req, res, next) {
@@ -44,7 +45,7 @@ app.use(function (req, res, next) {
 });
 app.use('/', usersRouter);
 app.use('/', setRouter);
-
+app.use('/', bankRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	next(createError(404));
