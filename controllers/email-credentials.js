@@ -1,7 +1,6 @@
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
+var creds = {
     user: '',
-    pass: 'yourpassword'
+    pass: ''
   }
-});
+
+module.exports = creds;

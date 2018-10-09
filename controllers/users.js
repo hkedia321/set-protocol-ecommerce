@@ -12,8 +12,6 @@ router.get('/', function(req, res, next) {
 });
 router.get('/login', function(req, res, next) {
 	sess = req.session;
-	console.log("session username");
-	console.log(sess.username);
 	if (sess.username) {
 		res.redirect('purchase');
 	}
@@ -36,7 +34,8 @@ router.post('/login/submit', function(req, res, next) {
 			bcrypt.compare(password, user[0].password, function(err, resPas) {
 				if (resPas == true) {
 					sess.username = username;
-					sess.name = user.name;
+					sess.name = user[0].name;
+					console.log("1. successful login. User: " + username);
 					res.redirect('http://localhost:4000/purchase');
 				}
 				else {
