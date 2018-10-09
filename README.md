@@ -30,5 +30,8 @@ It makes use of encryptions, digital signatures, and digital certificates to ach
 
 ![Login](/docs/screenshots/login page.png)
 
+Flowchart:
+![Flowchart](/docs/flowchart.png)
+
 
 
