@@ -28,7 +28,7 @@ It makes use of encryptions, digital signatures, and digital certificates to ach
 
 ![Purchase](/docs/screenshots/purchase.png)
 
-![Login](/docs/screenshots/login.png)
+![Login](/docs/screenshots/otp.png)
 
 Flowchart:
 
