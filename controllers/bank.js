@@ -2,13 +2,14 @@ var express = require('express');
 var router = express.Router();
 const JSEncrypt = require('node-jsencrypt');
 const jsEncrypt = new JSEncrypt();
-var msg91 = require("msg91")("", "611332", "1" );// 1 - promotional route 
+const emailCredentials = require('./email-credentials');
+var msg91 = require("msg91")(emailCredentials.msg91Key, "611332", "1" );// 1 - promotional route 
 var nodemailer = require('nodemailer');
 const keys = require('./keys-data');
 var sess;
 var transporter = nodemailer.createTransport({
 	service: 'gmail',
-	auth: require('./email-credentials')
+	auth: emailCredentials.email
 });
 
 // grab the model
@@ -37,6 +38,7 @@ router.get('/bank/verify', function(req, res, next) {
 		if (err) throw err;
 	});
 	// send OTP
+	console.log("OTP generated: " + otp);
 	msg91.send(phone, "Thank you for using your credit card. Your OTP is " + otp + ". Please dont share OTP with others.", function(err, response){
 	});
 	console.log("6. bank successfully verifies payment information and sends OTP to user");

@@ -1,6 +1,9 @@
 var creds = {
-    user: '',
-    pass: ''
-  }
+	email: {
+		user: '',
+		pass: ''
+	},
+	msg91Key: ""
+}
 
 module.exports = creds;

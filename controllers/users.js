@@ -49,6 +49,7 @@ router.post('/login/submit', function(req, res, next) {
 	});
 	
 });
+
 /* POST Register submit */
 router.post('/register/submit', function(req, res, next) {
 	var username = req.body.username;
@@ -68,7 +69,14 @@ router.post('/register/submit', function(req, res, next) {
 			res.redirect('/purchase');
 		});
 	});
-	
+});
+
+/* GET logout */
+router.get('/logout', function(req, res, next) {
+	sess = req.session;
+	sess.username = null;
+	sess.name = null;
+	res.redirect('/login');
 });
 
 
