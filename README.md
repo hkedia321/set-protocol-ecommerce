@@ -24,13 +24,14 @@ It makes use of encryptions, digital signatures, and digital certificates to ach
 - `/order-successful` [GET] - User gets success message after completing payment
 
 # Screenshots
-![Login](/docs/screenshots/login page.png)
+![Login](/docs/screenshots/login.png)
 
-![Purchase](/docs/screenshots/purchase screen.png)
+![Purchase](/docs/screenshots/purchase.png)
 
-![Login](/docs/screenshots/login page.png)
+![Login](/docs/screenshots/login.png)
 
 Flowchart:
+
 ![Flowchart](/docs/flowchart.png)
 
 
